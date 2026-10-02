@@ -1,0 +1,1 @@
+{"parentUuid":null,"isSidechain":true,"type":"user","message":{"role":"user","content":"subagent task prompt"},"uuid":"bbbbbbb1-0000-0000-0000-000000000001","timestamp":"2026-07-01T21:00:00.000Z","userType":"external","entrypoint":"cli","cwd":"C:/fake/project","sessionId":"11111111-1111-1111-1111-111111111111","version":"2.1.198","gitBranch":"main"}

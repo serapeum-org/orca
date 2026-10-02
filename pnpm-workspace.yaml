@@ -1,0 +1,10 @@
+# pnpm 10+ reads build-script policy from here, not package.json.
+#
+# esbuild (used by tsup/tsx/vitest) ships its platform binary in the optional dependency
+# `@esbuild/win32-x64`, which pnpm symlinks into each esbuild instance. esbuild resolves that
+# binary at runtime, so its install-time build script is not needed in this layout. We therefore
+# acknowledge and skip it rather than run arbitrary install scripts, and do not treat the skipped
+# build as a fatal install error.
+strictDepBuilds: false
+ignoredBuiltDependencies:
+  - esbuild

@@ -13,6 +13,7 @@ describe('KnownEntrySchema', () => {
     ['last-prompt', { type: 'last-prompt', sessionId: 's', leafUuid: 'l' }],
     ['custom-title', { type: 'custom-title', sessionId: 's', customTitle: 't' }],
     ['continued-in', { type: 'continued-in', sessionId: 's', continuedInSessionId: 's2' }],
+    ['fork-context-ref', { type: 'fork-context-ref', agentId: 'a', parentSessionId: 's', parentLastUuid: 'u', contextLength: 10 }],
     ['file-history-snapshot', { type: 'file-history-snapshot', messageId: 'm', snapshot: {}, isSnapshotUpdate: false }],
   ]
 
@@ -38,7 +39,7 @@ describe('KnownEntrySchema', () => {
     expect(KnownEntrySchema.safeParse({ type: 'assistant', uuid: 'u', parentUuid: null, sessionId: 's', timestamp: 't' }).success).toBe(false)
   })
 
-  it('models exactly the 22 observed types', () => {
-    expect(KNOWN_TYPES.size).toBe(22)
+  it('models exactly the 23 observed types', () => {
+    expect(KNOWN_TYPES.size).toBe(23)
   })
 })

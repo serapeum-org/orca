@@ -169,6 +169,17 @@ const continuedInEntry = z
     timestamp: z.string().optional(),
   })
   .passthrough()
+// Header of a forked subagent transcript: references the parent session it forked context from.
+// Observed only in `subagents/` transcripts; keyed by parentSessionId, with no uuid of its own.
+const forkContextRefEntry = z
+  .object({
+    type: z.literal('fork-context-ref'),
+    agentId: z.string(),
+    parentSessionId: z.string(),
+    parentLastUuid: z.string(),
+    contextLength: z.number(),
+  })
+  .passthrough()
 const frameLinkEntry = z
   .object({ type: z.literal('frame-link'), sessionId: z.string(), frameUrl: z.string(), timestamp: z.string().optional() })
   .passthrough()
@@ -198,6 +209,7 @@ export const KnownEntrySchema = z.discriminatedUnion('type', [
   bridgeSessionEntry,
   costStateEntry,
   continuedInEntry,
+  forkContextRefEntry,
   frameLinkEntry,
   endedByModelEntry,
 ])
@@ -231,6 +243,7 @@ export const KNOWN_TYPES: ReadonlySet<string> = new Set<string>([
   'bridge-session',
   'cost-state',
   'continued-in',
+  'fork-context-ref',
   'frame-link',
   'ended-by-model',
 ])
